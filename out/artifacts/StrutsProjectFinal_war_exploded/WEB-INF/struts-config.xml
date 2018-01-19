@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+    <form-beans>
+
+        <form-bean name="ContactCreateValidationForm" type="actionForm.ContactCreateValidationForm"/>
+        <form-bean name="ContactEditValidationForm" type="actionForm.ContactEditValidationForm"/>
+
+        <form-bean name="GroupCreateValidationForm" type="actionForm.GroupCreateValidationForm"/>
+        <form-bean name="GroupEditValidationForm" type="actionForm.GroupEditValidationForm"/>
+
+        <form-bean name="Contact_GroupCreateValidationForm" type="actionForm.Contact_GroupCreateValidationForm"/>
+
+    </form-beans>
+
+    <global-forwards>
+        <forward name="main" path="/" />
+    </global-forwards>
+
+    <action-mappings>
+
+        <action path ="/ReadGroup"
+                type = "servletAction.GroupReadAction" validate="false">
+            <forward name="success" path="/pages/GroupRead.jsp" />
+        </action>
+
+        <action path="/ContactCreation" forward="/pages/ContactCreate.jsp" />
+
+        <action path ="/ContactAbout"
+                type = "servletAction.ContactAbout" validate="false">
+            <forward name="success" path="/pages/ContactAbout.jsp" />
+        </action>
+
+        <action path ="/ContactDelete"
+                type = "servletAction.ContactDelete" validate="false">
+            <forward name="success" path="/ReadContact.do" />
+        </action>
+
+        <action path="/ContactEditForm"
+                type="servletAction.FormContactEditAction"
+                name="ContactEditValidationForm"
+                validate="false"
+                scope="request">
+            <forward name="success" path="/pages/ContactEdit.jsp" />
+        </action>
+
+        <action path="/EditContact"
+                type="servletAction.ContactEditAction"
+                name="ContactEditValidationForm" scope="request"
+                input="/pages/ContactEdit.jsp">
+            <forward name="success" path="/ReadContact.do" />
+        </action>
+
+        <action path ="/ReadContact"
+                type = "servletAction.ContactReadAction" validate="false">
+            <forward name="success" path="/pages/ContactRead.jsp" />
+        </action>
+
+
+        <action path="/CreateContact"
+                type="servletAction.ContactCreateAction"
+                name="ContactCreateValidationForm" scope="request"
+                input="/pages/main.jsp">
+            <forward name="success" path="/ReadContact.do" />
+            <forward name="error" path="/pages/error.jsp" />
+        </action>
+
+        <action path="/CreateGroup"
+                type="servletAction.GroupCreateAction"
+                name="GroupCreateValidationForm" scope="request"
+                input="/pages/main.jsp">
+            <forward name="success" path="/ReadGroup.do" />
+            <forward name="error" path="/pages/error.jsp" />
+        </action>
+
+        <action path ="/GroupDelete"
+                type = "servletAction.GroupDeleteAction" validate="false">
+            <forward name="success" path="/ReadGroup.do" />
+        </action>
+
+        <action path ="/GroupAbout"
+                type = "servletAction.GroupAboutAction" validate="false">
+            <forward name="success" path="/pages/GroupAbout.jsp" />
+        </action>
+
+        <action path="/GroupEditForm"
+                type="servletAction.FormGroupEditAction"
+                name="GroupEditValidationForm"
+                validate="false"
+                scope="request">
+            <forward name="success" path="/pages/GroupEdit.jsp" />
+        </action>
+
+        <action path="/EditGroup"
+                type="servletAction.GroupEditAction"
+                name="GroupEditValidationForm" scope="request"
+                input="/pages/GroupEdit.jsp">
+            <forward name="success" path="/ReadGroup.do" />
+        </action>
+
+
+        <action path="/Contact_GroupCreate"
+                type="servletAction.Contact_GroupCreateAction"
+                name="Contact_GroupCreateValidationForm" scope="request"
+                input="/pages/main.jsp">
+            <forward name="success" path="/ReadGroup.do" />
+            <forward name="error" path="/pages/error.jsp" />
+        </action>
+
+        <action path ="/Contact_GroupDeleteAction"
+                type = "servletAction.Contact_GroupDeleteAction" validate="false">
+            <forward name="success" path="/ReadGroup.do" />
+        </action>
+
+
+    </action-mappings>
+
+    <message-resources parameter="Resources" />
+
+</struts-config>
